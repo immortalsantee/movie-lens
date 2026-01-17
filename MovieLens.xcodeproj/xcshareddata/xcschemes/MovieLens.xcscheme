@@ -41,6 +41,17 @@
                ReferencedContainer = "container:MovieLens.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7135899B2F1B78770026166D"
+               BuildableName = "MovieLensUITests.xctest"
+               BlueprintName = "MovieLensUITests"
+               ReferencedContainer = "container:MovieLens.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -150,5 +150,6 @@ class MovieTableViewCell: UITableViewCell {
         }
         
         favoriteBadge.isHidden = !(movie.isFavorite ?? false)
+        favoriteBadge.accessibilityIdentifier = "smt_favorite_badge"
     }
 }

@@ -19,10 +19,18 @@
 			remoteGlobalIDString = 71DC76EE2F15D422009A4A7B;
 			remoteInfo = MovieLens;
 		};
+		713589A22F1B78770026166D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71DC76E72F15D422009A4A7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71DC76EE2F15D422009A4A7B;
+			remoteInfo = MovieLens;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7123819C2F1B603B00952B7E /* MovieLensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieLensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7135899C2F1B78770026166D /* MovieLensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieLensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71DC76EF2F15D422009A4A7B /* MovieLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -42,6 +50,11 @@
 			path = MovieLensTests;
 			sourceTree = "<group>";
 		};
+		7135899D2F1B78770026166D /* MovieLensUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MovieLensUITests;
+			sourceTree = "<group>";
+		};
 		71DC76F12F15D422009A4A7B /* MovieLens */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -54,6 +67,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		712381992F1B603B00952B7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		713589992F1B78770026166D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,6 +97,7 @@
 			children = (
 				71DC76F12F15D422009A4A7B /* MovieLens */,
 				7123819D2F1B603B00952B7E /* MovieLensTests */,
+				7135899D2F1B78770026166D /* MovieLensUITests */,
 				71DC76F02F15D422009A4A7B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +107,7 @@
 			children = (
 				71DC76EF2F15D422009A4A7B /* MovieLens.app */,
 				7123819C2F1B603B00952B7E /* MovieLensTests.xctest */,
+				7135899C2F1B78770026166D /* MovieLensUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +137,29 @@
 			productName = MovieLensTests;
 			productReference = 7123819C2F1B603B00952B7E /* MovieLensTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7135899B2F1B78770026166D /* MovieLensUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 713589A62F1B78770026166D /* Build configuration list for PBXNativeTarget "MovieLensUITests" */;
+			buildPhases = (
+				713589982F1B78770026166D /* Sources */,
+				713589992F1B78770026166D /* Frameworks */,
+				7135899A2F1B78770026166D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				713589A32F1B78770026166D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7135899D2F1B78770026166D /* MovieLensUITests */,
+			);
+			name = MovieLensUITests;
+			packageProductDependencies = (
+			);
+			productName = MovieLensUITests;
+			productReference = 7135899C2F1B78770026166D /* MovieLensUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		71DC76EE2F15D422009A4A7B /* MovieLens */ = {
 			isa = PBXNativeTarget;
@@ -154,6 +199,10 @@
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 71DC76EE2F15D422009A4A7B;
 					};
+					7135899B2F1B78770026166D = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 71DC76EE2F15D422009A4A7B;
+					};
 					71DC76EE2F15D422009A4A7B = {
 						CreatedOnToolsVersion = 26.2;
 						LastSwiftMigration = 2620;
@@ -180,12 +229,20 @@
 			targets = (
 				71DC76EE2F15D422009A4A7B /* MovieLens */,
 				7123819B2F1B603B00952B7E /* MovieLensTests */,
+				7135899B2F1B78770026166D /* MovieLensUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7123819A2F1B603B00952B7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7135899A2F1B78770026166D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -209,6 +266,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		713589982F1B78770026166D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71DC76EB2F15D422009A4A7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +287,11 @@
 			isa = PBXTargetDependency;
 			target = 71DC76EE2F15D422009A4A7B /* MovieLens */;
 			targetProxy = 712381A02F1B603B00952B7E /* PBXContainerItemProxy */;
+		};
+		713589A32F1B78770026166D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71DC76EE2F15D422009A4A7B /* MovieLens */;
+			targetProxy = 713589A22F1B78770026166D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -267,6 +336,44 @@
 			};
 			name = Release;
 		};
+		713589A42F1B78770026166D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.santosh.MovieLensUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MovieLens;
+			};
+			name = Debug;
+		};
+		713589A52F1B78770026166D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.santosh.MovieLensUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MovieLens;
+			};
+			name = Release;
+		};
 		71DC77032F15D425009A4A7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -280,8 +387,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,8 +420,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +566,15 @@
 			buildConfigurations = (
 				712381A32F1B603B00952B7E /* Debug */,
 				712381A42F1B603B00952B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		713589A62F1B78770026166D /* Build configuration list for PBXNativeTarget "MovieLensUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				713589A42F1B78770026166D /* Debug */,
+				713589A52F1B78770026166D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

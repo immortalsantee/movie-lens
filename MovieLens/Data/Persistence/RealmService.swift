@@ -13,9 +13,12 @@ final class RealmService {
     private let realm: Realm
     
     init() {
-        let config = RealmService.makeConfiguration()
+        var config = Realm.Configuration.defaultConfiguration
+        if SMAppEnvironment.isUITest {
+            config.inMemoryIdentifier = "UITestRealm"
+        }
         Realm.Configuration.defaultConfiguration = config
-        self.realm = try! Realm()
+        realm = try! Realm()
     }
     
     /// Just for finding database location.
