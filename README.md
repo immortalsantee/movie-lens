@@ -160,7 +160,11 @@ enum SMAppEnvironment {
 
 * Implement caching expiration policy.
 * Add sorting and filtering options.
-* Migrate detail screens to SwiftUI.
+* Add video trailer
+* Display more detailed movie information (cast, runtime, similar movies)
+* User profiles and watchlists
+* Recently viewed movies
+* Movie ratings and reviews
 
 ---
 
