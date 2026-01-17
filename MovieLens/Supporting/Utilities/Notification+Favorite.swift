@@ -11,7 +11,7 @@ extension Notification.Name {
     static let smFavoriteToggled = Notification.Name("sm.favorite.toggled")
 }
 
-enum FavoriteNotificationKey {
+enum SMFavoriteNotificationKey {
     static let movieId = "movieId"
     static let isFavorite = "isFavorite"
 }

@@ -72,8 +72,8 @@ class SearchViewController: UIViewController {
                 guard
                     let self,
                     let userInfo = notif.userInfo,
-                    let id = userInfo[FavoriteNotificationKey.movieId] as? Int,
-                    let isFavorite = userInfo[FavoriteNotificationKey.isFavorite] as? Bool,
+                    let id = userInfo[SMFavoriteNotificationKey.movieId] as? Int,
+                    let isFavorite = userInfo[SMFavoriteNotificationKey.isFavorite] as? Bool,
                     let index = self.searchViewModel.movies.firstIndex(where: { $0.id == id })
                 else { return }
 

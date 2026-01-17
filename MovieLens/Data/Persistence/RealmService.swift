@@ -88,8 +88,8 @@ final class RealmService {
             name: .smFavoriteToggled,
             object: nil,
             userInfo: [
-                FavoriteNotificationKey.movieId: movieId,
-                FavoriteNotificationKey.isFavorite: newValue
+                SMFavoriteNotificationKey.movieId: movieId,
+                SMFavoriteNotificationKey.isFavorite: newValue
             ]
         )
     }
