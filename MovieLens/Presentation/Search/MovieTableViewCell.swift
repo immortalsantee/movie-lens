@@ -151,8 +151,4 @@ class MovieTableViewCell: UITableViewCell {
         
         favoriteBadge.isHidden = !(movie.isFavorite ?? false)
     }
-    
-    func setFavorite(_ isFavorite: Bool) {
-        if favoriteBadge.isHidden == !isFavorite { return }
-        favoriteBadge.isHidden = !isFavorite}
 }

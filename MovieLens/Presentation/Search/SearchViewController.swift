@@ -72,15 +72,11 @@ class SearchViewController: UIViewController {
                 guard
                     let self,
                     let userInfo = notif.userInfo,
-                    let id = userInfo[SMFavoriteNotificationKey.movieId] as? Int,
-                    let isFavorite = userInfo[SMFavoriteNotificationKey.isFavorite] as? Bool,
-                    let index = self.searchViewModel.movies.firstIndex(where: { $0.id == id })
+                    let movieId = userInfo[SMFavoriteNotificationKey.movieId] as? Int,
+                    let isFavorite = userInfo[SMFavoriteNotificationKey.isFavorite] as? Bool
                 else { return }
 
-                let indexPath = IndexPath(row: index, section: 0)
-                if let cell = self.movieTableView.cellForRow(at: indexPath) as? MovieTableViewCell {
-                    cell.setFavorite(isFavorite)
-                }
+                searchViewModel.applyFavoriteChange(movieId: movieId, isFavorite: isFavorite)
             }
             .store(in: &cancellables)
     }
