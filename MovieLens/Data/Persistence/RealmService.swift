@@ -18,7 +18,7 @@ final class RealmService {
         self.realm = try! Realm()
     }
     
-    /// No need for now. Just for finding database location.
+    /// Just for finding database location.
     private func printRealmLocation() {
         let realmURL = Realm.Configuration.defaultConfiguration.fileURL
         print("Realm file location:", realmURL?.path ?? "No path found")
@@ -50,7 +50,6 @@ final class RealmService {
         try? realm.write {
             for movie in movies {
                 if let existing = realm.object(ofType: RealmMovie.self, forPrimaryKey: movie.id) {
-                    // Preserve favorite
                     movie.isFavorite = existing.isFavorite
                 }
                 realm.add(movie, update: .modified)
@@ -76,10 +75,23 @@ final class RealmService {
 
     func toggleFavorite(movieId: Int) {
         guard let movie = realm.object(ofType: RealmMovie.self, forPrimaryKey: movieId) else { return }
+        var newValue = false
+        
         try? realm.write {
             movie.isFavorite.toggle()
+            newValue = movie.isFavorite
             realm.add(movie, update: .modified)
         }
+        
+        // To make each cell responsive when favorite is toggled.
+        NotificationCenter.default.post(
+            name: .smFavoriteToggled,
+            object: nil,
+            userInfo: [
+                FavoriteNotificationKey.movieId: movieId,
+                FavoriteNotificationKey.isFavorite: newValue
+            ]
+        )
     }
 
     func getFavorites() -> [RealmMovie] {

@@ -104,10 +104,10 @@ final class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
         setupUI()
         bind()
-        setupNavigationBar()
         viewModel.loadMovie()
     }
 
@@ -128,22 +128,12 @@ final class DetailViewController: UIViewController {
     private func bind() {
         viewModel.$movie
             .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] movie in
-                self?.configure(movie)
-                
-                self?.genreStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-                let names = GenreStore.shared.names(for: movie.genre_ids ?? [])
-                names.forEach { self?.genreStack.addArrangedSubview(self!.makeGenre($0)) }
+                guard let self else { return }
+                self.configure(movie)
             }
             .store(in: &cancellables)
-    }
-    
-    private func updateUI() {
-        let names = viewModel.genreNames
-        genreStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        names.forEach {
-            genreStack.addArrangedSubview(makeGenre($0))
-        }
     }
 }
 
@@ -226,6 +216,8 @@ private extension DetailViewController {
             overviewStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             overviewStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
         ])
+        
+        setupNavigationBar()
     }
 }
 
@@ -238,14 +230,18 @@ private extension DetailViewController {
         overviewLabel.text = movie.overview
 
         ratingStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        ratingStack.addArrangedSubview(makeRating("Release", movie.release_date ?? ""))
-        ratingStack.addArrangedSubview(makeRating("Rating", String(format: "%.1f", movie.vote_average ?? 0)))
-        ratingStack.addArrangedSubview(makeRating("Reviews", "\(movie.vote_count ?? 0)"))
+        ratingStack.addArrangedSubview(makeRating("Release", movie.releaseDate ?? ""))
+        ratingStack.addArrangedSubview(makeRating("Rating", String(format: "%.1f", movie.voteAverage ?? 0)))
+        ratingStack.addArrangedSubview(makeRating("Reviews", "\(movie.voteCount ?? 0)"))
         
-        posterImageView.smSetImage(from: movie.poster_path)
-        backdropImageView.smSetImage(from: movie.backdrop_path)
+        posterImageView.smSetImage(from: movie.posterPath)
+        backdropImageView.smSetImage(from: movie.backdropPath)
         
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: (movie.is_favorite ?? false) ? "heart.fill" : "heart")
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: (movie.isFavorite ?? false) ? "heart.fill" : "heart")
+        
+        self.genreStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        let names = GenreStore.shared.names(for: movie.genreIds ?? [])
+        names.forEach { self.genreStack.addArrangedSubview(self.makeGenre($0)) }
     }
 
     func makeGenre(_ text: String) -> UILabel {
@@ -277,6 +273,7 @@ private extension DetailViewController {
     }
 }
 
+// MARK: - Favorite related methods
 private extension DetailViewController {
 
     private func setupNavigationBar() {

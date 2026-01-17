@@ -16,6 +16,9 @@ final class SearchViewModel {
     private let movieRepository: MovieRepositoryProtocol
     private var currentPage = 1
     private var currentQuery = ""
+    
+    private var favoriteIds = Set<Int>()
+    private var cancellables = Set<AnyCancellable>()
 
     init(repository: MovieRepositoryProtocol = MovieRepository()) {
         self.movieRepository = repository
@@ -43,8 +46,14 @@ final class SearchViewModel {
                     if !result.isEmpty {
                         if reset {
                             movies = result
+                            
+                            let favs = result.compactMap { ($0.isFavorite == true) ? $0.id : nil }
+                            favoriteIds = Set(favs)
                         } else {
                             movies.append(contentsOf: result)
+                            
+                            let moreFavs = result.compactMap { ($0.isFavorite == true) ? $0.id : nil }
+                            favoriteIds.formUnion(moreFavs)
                         }
                     }
                     
@@ -61,5 +70,19 @@ final class SearchViewModel {
     
     func clear() {
         movies = []
+        favoriteIds.removeAll()
+    }
+    
+    // MARK: - Favorite Updates
+    func applyFavoriteChange(movieId: Int, isFavorite: Bool) {
+        guard let index = movies.firstIndex(where: { $0.id == movieId }) else { return }
+
+        var updated = movies[index]
+        updated.isFavorite = isFavorite
+        movies[index] = updated
+    }
+    
+    func isFavorite(_ id: Int) -> Bool {
+        favoriteIds.contains(id)
     }
 }

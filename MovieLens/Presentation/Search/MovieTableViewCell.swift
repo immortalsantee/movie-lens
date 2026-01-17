@@ -137,18 +137,22 @@ class MovieTableViewCell: UITableViewCell {
     //MARK: - Configure
     func configure(movie: Movie) {
         titleLabel.text = movie.title
-        releaseDateLabel.text = movie.release_date
+        releaseDateLabel.text = movie.releaseDate
         overviewLabel.text = movie.overview
         
         // Start loader
         loader.startAnimating()
         posterImageView.image = nil
         
-        posterImageView.smSetImage(from: movie.poster_path) { [weak self] in
+        posterImageView.smSetImage(from: movie.posterPath) { [weak self] in
             guard let self = self else { return }
             self.loader.stopAnimating()
         }
         
-        favoriteBadge.isHidden = !(movie.is_favorite ?? false)
+        favoriteBadge.isHidden = !(movie.isFavorite ?? false)
     }
+    
+    func setFavorite(_ isFavorite: Bool) {
+        if favoriteBadge.isHidden == !isFavorite { return }
+        favoriteBadge.isHidden = !isFavorite}
 }

@@ -18,7 +18,7 @@ final class DetailViewModel {
     private let movieRepositaryProtocol: MovieRepositoryProtocol
     
     var genreNames: [String] {
-        guard let ids = movie?.genre_ids else { return [] }
+        guard let ids = movie?.genreIds else { return [] }
         return GenreStore.shared.names(for: ids)
     }
     
@@ -32,7 +32,6 @@ final class DetailViewModel {
         Task {
             do {
                 self.movie = try await self.movieRepositaryProtocol.getMovieDetails(id: self.movieId)
-                
             } catch let error as APIError {
                 errorMessage = error.message()
             }

@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
 
         setupUI()
         bindSearchViewModel()
+        bindFavoriteSync()
     }
     
     //MARK: - Setup
@@ -35,7 +36,7 @@ class SearchViewController: UIViewController {
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
-        movieTableView.prefetchDataSource = self // for pagination
+        movieTableView.prefetchDataSource = self
         movieTableView.smRegisterCell(MovieTableViewCell.self)
         movieTableView.tableFooterView = UIView()
     }
@@ -60,6 +61,26 @@ class SearchViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { isLoading in
                 
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bindFavoriteSync() {
+        NotificationCenter.default.publisher(for: .smFavoriteToggled)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notif in
+                guard
+                    let self,
+                    let userInfo = notif.userInfo,
+                    let id = userInfo[FavoriteNotificationKey.movieId] as? Int,
+                    let isFavorite = userInfo[FavoriteNotificationKey.isFavorite] as? Bool,
+                    let index = self.searchViewModel.movies.firstIndex(where: { $0.id == id })
+                else { return }
+
+                let indexPath = IndexPath(row: index, section: 0)
+                if let cell = self.movieTableView.cellForRow(at: indexPath) as? MovieTableViewCell {
+                    cell.setFavorite(isFavorite)
+                }
             }
             .store(in: &cancellables)
     }
@@ -105,9 +126,6 @@ extension SearchViewController: UITableViewDataSource {
         let cell: MovieTableViewCell = tableView.smDequeueReusableCell(forIndexPath: indexPath)
         
         let movie = searchViewModel.movies[indexPath.row]
-        if movie.id == 892527 {
-            print(movie)
-        }
         cell.configure(movie: movie)
         
         return cell

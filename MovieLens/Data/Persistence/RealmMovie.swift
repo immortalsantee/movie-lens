@@ -29,14 +29,14 @@ extension RealmMovie {
         id = movie.id
         title = movie.title
         overview = movie.overview
-        releasedDate = movie.release_date
-        posterPath = movie.poster_path
-        backdropPath = movie.backdrop_path
-        voteAverage = movie.vote_average
+        releasedDate = movie.releaseDate
+        posterPath = movie.posterPath
+        backdropPath = movie.backdropPath
+        voteAverage = movie.voteAverage
         popularity = movie.popularity
-        voteCount = movie.vote_count
+        voteCount = movie.voteCount
         searchQuery = query
-        if let ids = movie.genre_ids {
+        if let ids = movie.genreIds {
             genreIds.append(objectsIn: ids)
         }
     }
@@ -48,14 +48,14 @@ extension RealmMovie {
             id: id,
             title: title,
             overview: overview,
-            release_date: releasedDate,
-            poster_path: posterPath,
-            backdrop_path: backdropPath,
-            vote_average: voteAverage,
+            releaseDate: releasedDate,
+            posterPath: posterPath,
+            backdropPath: backdropPath,
+            voteAverage: voteAverage,
             popularity: popularity,
-            vote_count: voteCount,
-            is_favorite: isFavorite,
-            genre_ids: Array(genreIds)
+            voteCount: voteCount,
+            isFavorite: isFavorite,
+            genreIds: Array(genreIds)
         )
     }
 }
