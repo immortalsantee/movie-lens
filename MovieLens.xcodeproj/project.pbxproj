@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		712381922F1A05C300952B7E /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 712381912F1A05C300952B7E /* Reachability */; };
+		716ACD442F1C45B500EA607E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 716ACD3D2F1C45B500EA607E /* README.md */; };
 		71D190482F161B0D00716B3E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 71D190472F161B0D00716B3E /* RealmSwift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		7123819C2F1B603B00952B7E /* MovieLensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieLensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7135899C2F1B78770026166D /* MovieLensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieLensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		716ACD3D2F1C45B500EA607E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		71DC76EF2F15D422009A4A7B /* MovieLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				7123819D2F1B603B00952B7E /* MovieLensTests */,
 				7135899D2F1B78770026166D /* MovieLensUITests */,
 				71DC76F02F15D422009A4A7B /* Products */,
+				716ACD3D2F1C45B500EA607E /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				716ACD442F1C45B500EA607E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
