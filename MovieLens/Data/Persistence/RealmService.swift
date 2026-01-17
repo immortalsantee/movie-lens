@@ -13,40 +13,42 @@ final class RealmService {
     private let realm: Realm
     
     init() {
-        var config = Realm.Configuration.defaultConfiguration
+        var config = Realm.Configuration(schemaVersion: 1)
+        
         if SMAppEnvironment.isUITest {
-            config.inMemoryIdentifier = "UITestRealm"
+            config.fileURL = FileManager.default.temporaryDirectory.appendingPathComponent("UITest.realm")
+            config.deleteRealmIfMigrationNeeded = true
         }
-        Realm.Configuration.defaultConfiguration = config
-        realm = try! Realm()
+        
+        config.schemaVersion = 1
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                migration.enumerateObjects(ofType: RealmMovie.className()) { _, newObject in
+                    newObject?["backdropPath"] = nil
+                    newObject?["voteAverage"] = 0.0
+                    newObject?["voteCount"] = 0
+                }
+            }
+
+            if oldSchemaVersion < 1 {
+                migration.enumerateObjects(ofType: RealmMovie.className()) { _, newObject in
+                    newObject?["genreIds"] = List<Int>()
+                }
+            }
+        }
+        
+        do {
+            realm = try Realm(configuration: config)
+        } catch {
+            fatalError("Failed to initialize Realm: \(error)")
+        }
     }
+
     
     /// Just for finding database location.
     private func printRealmLocation() {
         let realmURL = Realm.Configuration.defaultConfiguration.fileURL
         print("Realm file location:", realmURL?.path ?? "No path found")
-    }
-
-    private static func makeConfiguration() -> Realm.Configuration {
-        Realm.Configuration(
-            schemaVersion: 4,
-            migrationBlock: { migration, oldSchemaVersion in
-
-                if oldSchemaVersion < 2 {
-                    migration.enumerateObjects(ofType: RealmMovie.className()) { _, newObject in
-                        newObject?["backdropPath"] = nil
-                        newObject?["voteAverage"] = 0.0
-                        newObject?["voteCount"] = 0
-                    }
-                }
-
-                if oldSchemaVersion < 4 {
-                    migration.enumerateObjects(ofType: RealmMovie.className()) { _, newObject in
-                        newObject?["genreIds"] = List<Int>()
-                    }
-                }
-            }
-        )
     }
 
     func saveMovies(_ movies: [RealmMovie]) {
