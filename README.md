@@ -85,8 +85,8 @@ MovieLens/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/MovieLens-iOS.git
-cd MovieLens-iOS
+git clone https://github.com/immortalsantee/movie-lens.git
+cd movie-lens
 ```
 
 2. Open in Xcode 16+:
