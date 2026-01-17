@@ -73,4 +73,10 @@ final class SearchViewModel {
     func getFavoriteMovies() async {
         movies = await movieRepository.getFavorites()
     }
+    
+#if DEBUG
+func _setMoviesForTesting(_ movies: [Movie]) {
+    self.movies = movies
+}
+#endif
 }
