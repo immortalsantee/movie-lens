@@ -68,14 +68,15 @@ MovieLens uses **MVVM + Repository pattern**:
 
 ```
 MovieLens/
-├─ Models/               # Movie, MovieSearchResponse, RealmMovie
-├─ ViewModels/           # SearchViewModel, DetailViewModel
-├─ Repositories/         # MovieRepository, NetworkService
-├─ Views/                # SearchViewController, DetailViewController, MovieTableViewCell
-├─ Services/             # RealmService, SMNetworkMonitor
-├─ Resources/            # Assets, Storyboards
-├─ MovieLensTests/       # Unit tests
-├─ MovieLensUITests/     # UI tests
+├─ App/
+├─ Data/
+├─ Domain/
+├─ Network/
+├─ Presentation/
+├─ Repository/
+├─ Supporting/
+├─ MovieLensTests/
+└─ MovieLensUITests/
 ```
 
 ---
@@ -95,10 +96,10 @@ cd movie-lens
 open MovieLens.xcodeproj
 ```
 
-3. Set your TMDb API key in `NetworkService.swift`:
+3. Set your TMDb API key in `Endpoint.swift`:
 
 ```swift
-let apiKey = "YOUR_TMDB_API_KEY"
+static let apiKey = "YOUR_TMDB_API_KEY"
 ```
 
 4. Build and run on simulator or device.
@@ -131,7 +132,7 @@ app.launchArguments = ["-UITestMode"]
 For deterministic UI testing:
 
 ```swift
-enum AppEnvironment {
+enum SMAppEnvironment {
     static let isUITest: Bool =
         ProcessInfo.processInfo.arguments.contains("-UITestMode")
 }
@@ -160,23 +161,6 @@ enum AppEnvironment {
 * Implement caching expiration policy.
 * Add sorting and filtering options.
 * Migrate detail screens to SwiftUI.
-* Disk caching for images to reduce network usage.
-* Add automated snapshot testing for UI consistency.
-
----
-
-## Contributing
-
-* Follow **MVVM + Repository** architecture.
-* Add **unit tests** for any new feature.
-* Add **UI tests** for user-facing interactions.
-* Use **SwiftLint** for code style consistency.
-
----
-
-## Screenshots
-
-*(Add screenshots or GIFs of the app here)*
 
 ---
 
