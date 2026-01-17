@@ -62,13 +62,15 @@ final class SearchViewModel {
     func clear() {
         movies = []
     }
-    
-    // MARK: - Favorite Updates
+
     func applyFavoriteChange(movieId: Int, isFavorite: Bool) {
         guard let index = movies.firstIndex(where: { $0.id == movieId }) else { return }
-
         var updated = movies[index]
         updated.isFavorite = isFavorite
         movies[index] = updated
+    }
+    
+    func getFavoriteMovies() async {
+        movies = await movieRepository.getFavorites()
     }
 }

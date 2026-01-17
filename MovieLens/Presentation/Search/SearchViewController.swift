@@ -11,11 +11,11 @@ import Combine
 class SearchViewController: UIViewController {
 
     //MARK: - Outlets
-    @IBOutlet weak var movieSearchBar: UISearchBar!
+    @IBOutlet weak var movieSearchBar: UISearchBar?
     @IBOutlet weak var movieTableView: UITableView!
     
     //MARK: - Properties
-    private let searchViewModel = SearchViewModel()
+    let searchViewModel = SearchViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     
@@ -31,8 +31,8 @@ class SearchViewController: UIViewController {
     private func setupUI() {
         title = "MovieLens"
         
-        movieSearchBar.delegate = self
-        movieSearchBar.placeholder = "Search any movies"
+        movieSearchBar?.delegate = self
+        movieSearchBar?.placeholder = "Search any movies"
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
